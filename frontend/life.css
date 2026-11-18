@@ -1,0 +1,145 @@
+/* Holy Planner 5.0: captura rápida, lembretes, revisão, diário, fichas e importação */
+.workspace-bar>div{display:flex;align-items:center;gap:10px}
+.quick-button{min-height:34px!important;padding:0 11px!important;gap:7px!important;font-size:12px!important;white-space:nowrap}
+.reminder-button{width:34px;height:34px;min-width:34px;display:inline-flex!important;align-items:center;justify-content:center;position:relative}
+.reminder-button .ui-icon{width:18px;height:18px}
+.quick-button .ui-icon{width:17px;height:17px}
+.quick-button kbd{font:600 10px/1 inherit;padding:3px 5px;border-radius:5px;border:1px solid var(--line);color:var(--muted);background:var(--panel)}
+.reminder-button{position:relative}
+.reminder-count{position:absolute;top:2px;right:-6px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#d9534f;color:#fff;font-size:10px;font-weight:700;display:grid;place-items:center;line-height:1}
+#quick-dialog,#reminder-dialog,#import-dialog{width:min(640px,calc(100vw - 32px));max-width:none;max-height:92dvh;box-sizing:border-box;overflow:auto;padding:26px}
+#import-dialog{width:min(980px,calc(100vw - 32px))}
+#quick-input{width:100%;box-sizing:border-box;font-size:17px;padding:15px 16px;border-radius:12px;margin:4px 0 10px}
+.quick-examples{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.quick-examples button{font-size:11px;padding:5px 10px;border-radius:20px;border:1px solid var(--line);background:var(--soft);color:var(--text);min-height:0}
+.quick-label{font-size:11px;color:var(--muted);margin:0 0 8px;letter-spacing:.5px;text-transform:uppercase}
+.quick-types{margin-bottom:14px;flex-wrap:wrap}
+.quick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.quick-grid .wide{grid-column:1/-1}
+#quick-dialog label,#import-dialog label,#reminder-dialog label{display:flex;flex-direction:column;gap:6px;font-size:12px;min-width:0}
+#quick-dialog input:not([type=checkbox]),#quick-dialog select,#quick-dialog textarea{width:100%;box-sizing:border-box}
+.quick-workout{display:grid;gap:6px;padding:14px;border-radius:12px;background:var(--soft);font-size:13px}
+.quick-workout span{color:var(--muted)}
+
+.reminder-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.reminder-item>span{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:var(--soft);color:var(--accent);flex-shrink:0}
+.reminder-item>span .ui-icon{width:17px;height:17px}
+.reminder-item div{flex:1;min-width:0;display:grid;gap:3px}.reminder-item strong{font-size:13px}.reminder-item small{font-size:11px;color:var(--muted)}
+.reminder-settings{display:grid;gap:12px;margin-top:20px;padding:16px;border-radius:12px;background:var(--soft)}
+.reminder-settings h3{margin:0;font-size:14px}
+#reminder-dialog .plan-check{flex-direction:row;align-items:center;gap:8px}
+
+.today-extras{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;margin:0 0 25px}
+.today-extras.single{grid-template-columns:1fr}
+.today-journal,.today-money{padding:18px 20px;display:grid;gap:12px;align-content:start}
+.today-journal h2,.today-money h2{margin:4px 0 0;font-size:16px}
+.today-journal .text-button,.today-money .text-button{justify-self:start}
+.today-money strong{font-size:28px;letter-spacing:-.8px;font-variant-numeric:tabular-nums}
+.today-money small{font-size:11px;color:var(--muted);line-height:1.5}
+.mood-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.mood-button{display:flex!important;flex-direction:column;gap:3px!important;padding:10px 4px!important;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--text);min-height:0!important}
+.mood-button strong{font-size:18px}.mood-button small{font-size:10px;color:var(--muted);text-align:center;line-height:1.2}
+.mood-button.selected{background:var(--soft);border-color:var(--accent);color:var(--accent)}
+.mood-button.selected small{color:var(--accent)}
+
+.review-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin:10px 0 24px}
+.review-head h2{margin:6px 0;font-size:26px;letter-spacing:-.6px}.review-head p{margin:0;color:var(--muted);font-size:13px}
+.review-step{margin-bottom:30px}
+.review-step-title{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.review-step-title span{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--panel);font-weight:700;font-size:13px}
+.review-step-title h3{margin:0;font-size:18px}
+.review-grid,.review-plan{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}
+.review-card{padding:18px 20px;min-width:0}
+.review-card h4{margin:0 0 10px;font-size:13px;letter-spacing:.3px}
+.review-card h4:not(:first-child){margin-top:16px}
+.review-card p{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;overflow-wrap:anywhere}
+.review-card p .ui-icon{width:14px;height:14px;color:var(--accent);flex-shrink:0}
+.review-card p.hint{display:block}
+.review-card dl{margin:0;display:grid}.review-card dl div{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--line);font-size:12px}
+.review-card dt{color:var(--muted)}.review-card dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums}
+.review-routine{justify-content:space-between}
+.review-reflection{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
+.review-reflection label{display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:600}
+.review-reflection textarea{min-height:110px;font-weight:400}
+.review-priority{display:flex!important;flex-direction:row!important;align-items:center;gap:10px;margin:8px 0}
+.review-priority span{display:grid;place-items:center;width:24px;height:24px;border-radius:7px;background:var(--soft);color:var(--accent);font-weight:700;font-size:12px;flex-shrink:0}
+.review-priority input{flex:1;min-width:0}
+.review-task{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.review-task>span{display:grid;gap:2px;min-width:0}.review-task strong{font-size:12px;overflow-wrap:anywhere}.review-task small{font-size:10px;color:var(--muted)}
+.review-task select{max-width:130px;font-size:11px;padding:6px 8px}
+.review-save{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:20px;border-radius:14px;background:var(--soft);margin-bottom:30px}
+.review-save .hint{margin:0}
+
+.journal-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;margin:10px 0 18px;align-items:start}
+.journal-form,.journal-side{padding:22px 24px}
+.journal-form .section-head,.journal-side .section-head,.journal-history .section-head{padding:0 0 14px;flex-wrap:wrap;gap:12px}
+.journal-form h3{font-size:13px;margin:16px 0 8px}
+.journal-day{display:flex;flex-direction:column;gap:5px;font-size:11px;color:var(--muted)}
+.journal-row{display:flex;gap:14px;margin:16px 0}
+.journal-row label,.journal-form>label{display:flex;flex-direction:column;gap:6px;font-size:12px}
+.journal-form textarea{min-height:70px}
+.journal-actions{display:flex;align-items:center;gap:14px;margin-top:16px}
+.journal-averages{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.journal-averages div{display:grid;gap:3px;padding:12px;border-radius:10px;background:var(--soft);text-align:center}
+.journal-averages strong{font-size:22px}.journal-averages small{font-size:10px;color:var(--muted)}
+.journal-chart svg{width:100%;height:auto;display:block}
+.journal-mood{fill:none;stroke:var(--accent);stroke-width:2.5}.journal-energy{fill:none;stroke:var(--plan-1);stroke-width:2;stroke-dasharray:5 4}
+.journal-mood-swatch{background:var(--accent)}.journal-energy-swatch{background:var(--plan-1)}
+.journal-insight{padding:12px 14px;border-radius:10px;border:1px solid var(--line);margin:10px 0}
+.journal-insight strong{font-size:12px}
+.journal-insight>div{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.journal-insight span{display:grid;gap:2px;font-size:11px;color:var(--muted)}.journal-insight b{font-size:17px;color:var(--text)}
+.journal-insight .hint{margin:8px 0 0}
+.journal-history{padding:20px 22px;margin-bottom:24px}
+.journal-entry{display:flex!important;flex-wrap:wrap;align-items:center;justify-content:flex-start!important;gap:6px 16px!important;width:100%;text-align:left;padding:12px 4px!important;border:0;border-top:1px solid var(--line);border-radius:0;background:transparent;color:var(--text);font-size:12px}
+.journal-entry:hover{background:var(--soft)}
+.journal-entry .journal-date{font-weight:600;min-width:80px}.journal-entry b{font-weight:700}
+.journal-entry small{flex-basis:100%;color:var(--muted);overflow-wrap:anywhere}
+
+.workout-templates{display:flex;align-items:center;gap:20px;padding:18px 22px;border:1px solid var(--line);border-radius:14px;background:var(--panel);margin:0 0 6px;flex-wrap:wrap}
+.workout-templates>div:first-child{flex:1;min-width:220px}.workout-templates p{margin:6px 0 0;font-size:12px;color:var(--muted)}
+.workout-template-list{display:flex;flex-wrap:wrap;gap:10px}
+.workout-template{display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-radius:11px;background:var(--soft)}
+.workout-template div{display:grid;gap:2px}.workout-template strong{font-size:13px}.workout-template small{font-size:10px;color:var(--muted)}
+.workout-template .primary{min-height:34px;padding:0 12px;font-size:12px}
+.workout-last{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:11px;color:var(--muted);margin:-4px 0 8px;padding:8px 10px;border-radius:8px;background:var(--panel)}
+.workout-last .text-button{font-size:11px;padding:0;min-height:0}
+.rest-timer{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:10px 12px;border-radius:10px;background:var(--soft);margin-bottom:6px;font-size:12px}
+.rest-timer .secondary{min-height:30px;padding:0 10px;font-size:11px}
+.rest-timer strong{font-size:16px;color:var(--accent);font-variant-numeric:tabular-nums;margin-left:auto}
+.template-preview{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.template-preview span{font-size:11px;padding:5px 9px;border-radius:7px;background:var(--soft)}
+
+.import-controls{display:grid;grid-template-columns:1.2fr 1fr 1.2fr;gap:12px;align-items:end;margin:14px 0}
+#import-dialog .plan-check{flex-direction:row;align-items:center;gap:8px}
+.import-summary{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:12px;margin:8px 0}
+.import-table{max-height:46dvh;overflow:auto;border:1px solid var(--line);border-radius:10px}
+.import-table table{width:100%;border-collapse:collapse;font-size:12px}
+.import-table th{position:sticky;top:0;background:var(--soft);text-align:left;padding:9px 10px;font-weight:600;color:var(--muted);z-index:1}
+.import-table td{padding:7px 10px;border-top:1px solid var(--line);vertical-align:middle}
+.import-table td small{display:block;font-size:10px;color:var(--muted)}
+.import-table td:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.import-table select,.import-table input:not([type=checkbox]){font-size:11px;padding:5px 7px;width:100%;box-sizing:border-box;min-width:90px}
+.import-duplicate td{opacity:.6}
+.daily-allowance{display:block;margin-top:6px;font-size:12px;color:var(--text)}
+.task-bill{margin:6px 0 4px;padding:10px 12px;border:1px dashed var(--line);border-radius:10px}
+.task-bill summary{cursor:pointer;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600}
+.task-bill summary .ui-icon{width:16px;height:16px;color:var(--accent)}
+.task-bill .form-grid{margin-top:10px}
+.goal-auto{display:inline-flex;align-items:center;gap:5px}
+.goal-auto .ui-icon{width:12px;height:12px}
+#editor .plan-check{flex-direction:row;align-items:center;gap:8px;font-size:12px}
+
+@media(max-width:1100px){.review-grid,.review-plan{grid-template-columns:1fr 1fr}.journal-layout{grid-template-columns:1fr}}
+@media(max-width:900px){.quick-button .quick-text,.quick-button kbd{display:none}.quick-button{width:36px;padding:0!important}}
+@media(max-width:720px){
+  .today-extras{grid-template-columns:1fr}
+  .mood-button small{display:none}
+  .review-grid,.review-plan,.review-reflection{grid-template-columns:1fr}
+  .review-head h2{font-size:21px}
+  .quick-grid{grid-template-columns:1fr 1fr}
+  #quick-dialog,#reminder-dialog,#import-dialog{padding:18px;width:calc(100vw - 20px)}
+  .import-controls{grid-template-columns:1fr}
+  .journal-form,.journal-side,.journal-history{padding:16px}
+  .workout-templates{padding:14px}
+}

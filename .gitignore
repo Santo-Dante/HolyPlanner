@@ -1,0 +1,33 @@
+# Ambiente e caches do Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Build do executável (gere com scripts\gerar_app_windows.bat)
+build/
+dist/
+*.zip
+
+# Dados pessoais: banco, backups, exportações e prévias
+*.db
+*.db-journal
+backups/
+exports/
+.test-data/
+
+# Credenciais e certificados (nunca publique)
+credentials*.json
+client_secret*.json
+token*.json
+*.pem
+*.key
+*.crt
+
+# Editores e sistema
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+Desktop.ini
+.DS_Store

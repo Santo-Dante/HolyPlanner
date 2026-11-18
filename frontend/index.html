@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f7f8fa">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <title>Holy Planner</title>
+  <link href="style.css" rel="stylesheet">
+  <link href="responsive.css" rel="stylesheet">
+  <link href="finance.css" rel="stylesheet">
+  <link href="theme.css" rel="stylesheet">
+  <link href="workspace.css" rel="stylesheet">
+  <link href="workouts.css" rel="stylesheet">
+  <link href="planning.css" rel="stylesheet">
+  <link href="life.css" rel="stylesheet">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#" id="brand-home" aria-label="Holy Planner, abrir Meu dia">
+        <span class="brand-icon">h<span>/</span></span><span class="brand-name">holy planner<span>SEU ESPAÇO PARA EVOLUIR</span></span>
+      </a>
+      <nav aria-label="Navegação principal">
+        <p class="nav-label">MEU ESPAÇO</p>
+        <button class="active" data-page="today" data-icon="home">Meu dia</button>
+        <button data-page="week" data-icon="calendar">Minha semana</button>
+        <button data-page="tasks" data-icon="list">Tarefas</button>
+        <button data-page="projects" data-icon="folder">Projetos</button>
+        <button data-page="calendar" data-icon="calendar">Calendário</button>
+        <button data-page="review" data-icon="checkSquare">Revisão semanal</button>
+        <p class="nav-label">CRESCER COM INTENÇÃO</p>
+        <button data-page="routines" data-icon="repeat">Rotinas</button>
+        <button data-page="workouts" data-icon="dumbbell">Meus treinos</button>
+        <button data-page="goals" data-icon="target">Metas</button>
+        <button data-page="focus" data-icon="clock">Modo foco</button>
+        <button data-page="notes" data-icon="book">Minhas notas</button>
+        <button data-page="journal" data-icon="heart">Diário</button>
+        <button data-page="finance" data-icon="dollar">Finanças</button>
+        <button data-page="planning" data-icon="trend">Planejar investimentos</button>
+      </nav>
+      <div class="sidebar-card"><span class="sidebar-spark">✦</span><strong>Um passo de cada vez.</strong><p>Pequenas ações abrem espaço para grandes mudanças.</p><button id="sidebar-focus">Começar um foco <span>↗</span></button></div>
+      <div class="topbar-tools">
+        <label class="global-search"><span data-icon="search"></span><input id="global-search" type="search" placeholder="Buscar..." aria-label="Buscar na aba atual"></label>
+        <span class="topbar-divider" aria-hidden="true"></span>
+        <button class="icon settings-button" id="settings" aria-label="Configurações do aplicativo" title="Configurações" data-icon="settings"></button>
+        <button class="icon settings-button" id="theme-toggle" aria-label="Alternar tema claro e escuro" title="Alternar tema">◐</button>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="workspace-bar"><span>Meu espaço <span class="breadcrumb-slash">/</span> <strong id="breadcrumb">Meu dia</strong></span><div><span class="workspace-status"><i></i>Seu ritmo, seu progresso</span><button class="secondary" id="install-app" hidden>Instalar app</button><button class="secondary quick-button" id="quick-capture" title="Captura rápida (Q)"><span data-icon="bolt"></span><span class="quick-text">Captura rápida</span><kbd>Q</kbd></button><button class="icon reminder-button" id="reminders-button" aria-label="Lembretes" title="Lembretes"><span data-icon="bell"></span><span id="reminder-count" class="reminder-count" hidden>0</span></button><button id="menu-toggle" class="icon" aria-label="Abrir menu" aria-expanded="false">☰</button></div></div>
+    <section class="heading">
+      <div><p id="date-label" class="eyebrow"></p><h1 id="page-title">Meu dia</h1><p id="subtitle">Conectando ao aplicativo…</p></div>
+      <button class="primary" id="create" disabled>+ Nova tarefa</button>
+    </section>
+    <button type="button" class="secondary" id="retry-start" hidden>Tentar carregar novamente</button>
+    <div id="google-default">
+      <section class="google-panel" aria-label="Conexão com Google Agenda">
+        <div id="calendar-logo"></div>
+        <div class="google-info"><div class="google-title"><strong>Google Agenda</strong><span id="google-state" role="status">Não conectado</span></div><small id="google-detail"></small></div>
+        <div class="google-actions">
+          <button type="button" class="secondary" id="google-connect">Conectar Google</button>
+          <button type="button" class="secondary" id="google-sync" hidden>Sincronizar</button>
+          <details class="row-menu google-menu"><summary aria-label="Opções do Google Agenda"><span data-icon="more"></span></summary><div class="row-menu-items"><button type="button" id="google-reconnect" hidden>Reconectar conta</button><button type="button" id="google-disconnect" hidden>Desconectar</button><button type="button" id="google-help">Como configurar</button></div></details>
+        </div>
+      </section>
+    </div>
+    <div id="content" aria-live="polite"><div class="empty">Carregando seus dados…</div></div>
+    <footer><span class="local"><i></i><span id="connection-status">Dados salvos no seu computador</span></span><button class="footer-backup" id="backup"><span data-icon="upload"></span>Salvar backup</button></footer>
+  </main>
+  <dialog id="settings-dialog" aria-labelledby="settings-title">
+    <div class="modal-head"><h2 id="settings-title">Seu aplicativo</h2><button class="icon" id="settings-close" aria-label="Fechar configurações" data-icon="close"></button></div>
+    <p>Seus projetos, rotinas e finanças ficam salvos neste computador.</p>
+    <div class="settings-options"><button class="secondary" id="settings-backup">Salvar uma cópia de segurança</button><button class="secondary" id="settings-google">Configurar o Google Agenda</button></div>
+    <button class="secondary" id="install-help">Usar no computador e no celular</button>
+    <p class="hint">HOLY PLANNER · VERSÃO 5.0<br>Atalhos: Q captura rápida · N cria uma tarefa · / abre a busca · Alt + 1 abre Meu dia · Alt + 2 abre o foco.</p>
+  </dialog>
+  <dialog id="pair-dialog" aria-labelledby="pair-title">
+    <form id="pair-form"><div class="pair-logo">h/</div><p class="eyebrow">SEU ESPAÇO, EM QUALQUER TELA</p><h2 id="pair-title">Conecte seu planner</h2><p>Digite o código exibido na janela do servidor Holy Planner no computador.</p><label>Código de conexão<input id="pair-code" required autocomplete="off" spellcheck="false" autocapitalize="none"></label><p id="pair-error" class="error" role="alert"></p><button class="primary" type="submit">Entrar no meu espaço →</button><p class="hint">O computador precisa estar ligado e na mesma rede. Nenhuma conta é necessária.</p></form>
+  </dialog>
+  <dialog id="install-dialog" aria-labelledby="install-title"><div class="modal-head"><h2 id="install-title">Seu planner como app</h2><button class="icon" id="install-close" aria-label="Fechar">×</button></div><div id="install-instructions"></div></dialog>
+  <div id="mini-timer" hidden><button id="mini-timer-open"><span class="focus-dot"></span><span id="mini-timer-text">25:00</span> · Voltar ao foco ↗</button></div>
+  <dialog id="editor">
+   <form id="edit-form">
+    <div class="modal-head">
+     <div>
+      <p class="eyebrow green">
+       ORGANIZE O PRÓXIMO PASSO
+      </p>
+      <h2 id="editor-title">
+      </h2>
+     </div>
+     <button aria-label="Fechar" class="icon" id="close-editor" type="button">
+      ×
+     </button>
+    </div>
+    <div id="fields">
+    </div>
+    <p class="error" id="form-error" role="alert">
+    </p>
+    <div class="modal-actions">
+     <button class="secondary" id="cancel-editor" type="button">
+      Cancelar
+     </button>
+     <button class="primary" type="submit">
+      Salvar
+     </button>
+    </div>
+   </form>
+  </dialog>
+  <dialog id="confirmation">
+   <h2>
+    Excluir registro?
+   </h2>
+   <p id="confirm-detail">
+   </p>
+   <div class="modal-actions">
+    <button class="secondary" id="cancel-delete">
+     Cancelar
+    </button>
+    <button class="danger" id="confirm-delete-series" hidden>
+     Excluir este e os próximos
+    </button>
+    <button class="danger" id="confirm-delete">
+     Excluir
+    </button>
+   </div>
+  </dialog>
+  <dialog id="google-help-dialog">
+   <h2>Conectar ao Google Agenda</h2>
+   <p>Após conectar, seus eventos do Google aparecem aqui. Tarefas e projetos com prazo do Holy Planner são enviados à agenda principal, incluindo os itens já cadastrados. Rotinas ficam somente no aplicativo.</p>
+   <ol>
+    <li>Ative a Google Calendar API no Google Cloud e configure a tela de consentimento OAuth.</li>
+    <li>Crie um cliente OAuth do tipo <strong>Aplicativo para computador</strong>.</li>
+    <li>Baixe o JSON e salve como <code>credentials.json</code> na pasta <code>holy_planner</code>.</li>
+    <li>Execute <code>scripts\instalar_windows.bat</code> novamente e clique em <strong>Conectar Google</strong>.</li>
+   </ol>
+   <p>O login abre no seu navegador. O passo a passo completo está em <strong>docs/GOOGLE_AGENDA.md</strong>.</p>
+   <p>Edite os eventos criados no Google pelo Google Agenda; edite os itens do Holy Planner pelo aplicativo. Excluir uma tarefa ou projeto também remove seu evento vinculado na próxima sincronização. Desconectar preserva os eventos no Google.</p>
+   <div class="modal-actions"><button type="button" class="primary" id="google-help-close">Entendi</button></div>
+  </dialog>
+  <div hidden="" id="toast" role="status">
+  </div>
+  <script src="icons.js"></script>
+  <script src="finance.js"></script>
+  <script src="bridge.js"></script>
+  <script src="productivity.js"></script>
+  <script src="workouts.js"></script>
+  <script src="planning.js"></script>
+  <script src="life.js"></script>
+  <script src="app.js">
+  </script>
+ </body>
+</html>
