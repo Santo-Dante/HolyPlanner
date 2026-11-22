@@ -1,0 +1,67 @@
+/* Holy Planner 5.1 — minimal layer: dark first, less text, collapsible sidebar. Loaded last. */
+:root[data-theme=dark]{--bg:#14161c;--panel:#1b1e26;--line:#2a2e3a;--text:#e7e9f0;--muted:#8f97a8;--soft:#262338;--shadow:none}
+:root{--shadow:none}
+
+/* Sidebar */
+.topbar{transition:width .2s ease,padding .2s ease,transform .2s ease}
+main{transition:margin .2s ease;min-width:0}
+#content{min-width:0}
+.brand{margin-bottom:26px;align-items:center}
+.brand-name{font-size:18px}
+.nav-label{display:none}
+.nav-sep{display:block;height:1px;background:var(--line);margin:12px 10px;flex-shrink:0}
+.topbar nav{gap:2px}
+.topbar nav button{min-height:40px}
+.sidebar-card{display:none}
+
+/* Top bar: menu button on the left, nothing else that only decorates */
+.workspace-bar{height:58px;min-height:58px}
+.bar-left{display:flex;align-items:center;gap:10px;min-width:0}
+#breadcrumb{display:none}
+#menu-toggle{display:inline-flex!important;align-items:center;justify-content:center;width:38px;height:38px;font-size:19px;border-radius:9px;color:var(--muted);background:transparent;border:1px solid transparent}
+#menu-toggle:hover{background:var(--soft);color:var(--accent)}
+.workspace-status,.breadcrumb-slash{display:none}
+
+/* Page heading */
+.heading{padding:22px 0 18px}
+.heading h1{font-size:26px;margin:0}
+#subtitle:empty{display:none}
+#subtitle:not(:empty){margin-top:6px!important}
+
+/* Fewer words on every screen */
+.section-head .eyebrow,.panel-bottom,.chart-caption,.empty-glyph,.empty p,.intention-banner,.orbit-art,.finance-plan-link,.workout-intro{display:none!important}
+.empty{padding:24px 18px}
+.empty .secondary{margin-top:12px}
+.overview-stats{margin:4px 0 20px}
+.plan-intro{display:flex;justify-content:flex-end;background:none;border:0;padding:0;margin:0 0 14px;border-radius:0}
+.plan-intro{flex-direction:row!important;align-items:center!important;padding:0!important}
+footer .local{opacity:.75}
+
+/* Collapsed rail (desktop and tablet) */
+@media(min-width:721px){
+  html.nav-collapsed .topbar{width:68px;padding:22px 10px 14px}
+  html.nav-collapsed main{margin-left:68px}
+  html.nav-collapsed .brand{padding:0;justify-content:center;margin-bottom:22px}
+  html.nav-collapsed .brand-name{display:none}
+  html.nav-collapsed .brand-icon{width:38px;height:40px;font-size:30px}
+  html.nav-collapsed .topbar nav button{font-size:0;gap:0;justify-content:center;padding:10px}
+  html.nav-collapsed .topbar nav button .ui-icon{width:19px;height:19px}
+  html.nav-collapsed .nav-sep{margin:10px 6px}
+  html.nav-collapsed .global-search,html.nav-collapsed .topbar-divider{display:none}
+  html.nav-collapsed .topbar-tools{flex-direction:column;align-items:center;padding-top:12px}
+}
+@media(min-width:1800px){html.nav-collapsed main{margin-left:68px}}
+
+/* Phone: off-canvas menu with a scrim */
+@media(max-width:720px){
+  .topbar{width:min(270px,82vw)}
+  body.menu-open::after{content:'';position:fixed;inset:0;background:#05060a99;z-index:39}
+  .workspace-bar{height:54px;min-height:54px}
+  .heading{padding:16px 0 14px;flex-wrap:wrap}
+  .heading h1{font-size:22px}
+  .heading .primary{min-height:38px}
+  .overview-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .quick-text,.quick-button kbd{display:none}
+}
+@media(max-width:380px){.overview-stats{grid-template-columns:1fr}}
+@media(min-width:721px) and (max-width:1250px){.topbar nav button{padding:9px 11px;gap:10px;font-size:12.5px}}

@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#f7f8fa">
+  <meta name="theme-color" content="#14161c">
+  <script src="theme-init.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="app-icon.svg" type="image/svg+xml">
@@ -17,22 +18,23 @@
   <link href="workouts.css" rel="stylesheet">
   <link href="planning.css" rel="stylesheet">
   <link href="life.css" rel="stylesheet">
+  <link href="minimal.css" rel="stylesheet">
 </head>
 <body>
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="#" id="brand-home" aria-label="Holy Planner, abrir Meu dia">
-        <span class="brand-icon">h<span>/</span></span><span class="brand-name">holy planner<span>SEU ESPAÇO PARA EVOLUIR</span></span>
+        <span class="brand-icon">h<span>/</span></span><span class="brand-name">holy planner</span>
       </a>
       <nav aria-label="Navegação principal">
-        <p class="nav-label">MEU ESPAÇO</p>
+        
         <button class="active" data-page="today" data-icon="home">Meu dia</button>
         <button data-page="week" data-icon="calendar">Minha semana</button>
         <button data-page="tasks" data-icon="list">Tarefas</button>
         <button data-page="projects" data-icon="folder">Projetos</button>
         <button data-page="calendar" data-icon="calendar">Calendário</button>
         <button data-page="review" data-icon="checkSquare">Revisão semanal</button>
-        <p class="nav-label">CRESCER COM INTENÇÃO</p>
+        <span class="nav-sep" aria-hidden="true"></span>
         <button data-page="routines" data-icon="repeat">Rotinas</button>
         <button data-page="workouts" data-icon="dumbbell">Meus treinos</button>
         <button data-page="goals" data-icon="target">Metas</button>
@@ -42,7 +44,6 @@
         <button data-page="finance" data-icon="dollar">Finanças</button>
         <button data-page="planning" data-icon="trend">Planejar investimentos</button>
       </nav>
-      <div class="sidebar-card"><span class="sidebar-spark">✦</span><strong>Um passo de cada vez.</strong><p>Pequenas ações abrem espaço para grandes mudanças.</p><button id="sidebar-focus">Começar um foco <span>↗</span></button></div>
       <div class="topbar-tools">
         <label class="global-search"><span data-icon="search"></span><input id="global-search" type="search" placeholder="Buscar..." aria-label="Buscar na aba atual"></label>
         <span class="topbar-divider" aria-hidden="true"></span>
@@ -52,7 +53,7 @@
     </div>
   </header>
   <main>
-    <div class="workspace-bar"><span>Meu espaço <span class="breadcrumb-slash">/</span> <strong id="breadcrumb">Meu dia</strong></span><div><span class="workspace-status"><i></i>Seu ritmo, seu progresso</span><button class="secondary" id="install-app" hidden>Instalar app</button><button class="secondary quick-button" id="quick-capture" title="Captura rápida (Q)"><span data-icon="bolt"></span><span class="quick-text">Captura rápida</span><kbd>Q</kbd></button><button class="icon reminder-button" id="reminders-button" aria-label="Lembretes" title="Lembretes"><span data-icon="bell"></span><span id="reminder-count" class="reminder-count" hidden>0</span></button><button id="menu-toggle" class="icon" aria-label="Abrir menu" aria-expanded="false">☰</button></div></div>
+    <div class="workspace-bar"><div class="bar-left"><button id="menu-toggle" class="icon" aria-label="Recolher ou abrir o menu" aria-expanded="true" title="Menu (M)">☰</button><strong id="breadcrumb">Meu dia</strong></div><div><button class="secondary" id="install-app" hidden>Instalar app</button><button class="secondary quick-button" id="quick-capture" title="Captura rápida (Q)"><span data-icon="bolt"></span><span class="quick-text">Captura rápida</span><kbd>Q</kbd></button><button class="icon reminder-button" id="reminders-button" aria-label="Lembretes" title="Lembretes"><span data-icon="bell"></span><span id="reminder-count" class="reminder-count" hidden>0</span></button></div></div>
     <section class="heading">
       <div><p id="date-label" class="eyebrow"></p><h1 id="page-title">Meu dia</h1><p id="subtitle">Conectando ao aplicativo…</p></div>
       <button class="primary" id="create" disabled>+ Nova tarefa</button>
@@ -77,7 +78,7 @@
     <p>Seus projetos, rotinas e finanças ficam salvos neste computador.</p>
     <div class="settings-options"><button class="secondary" id="settings-backup">Salvar uma cópia de segurança</button><button class="secondary" id="settings-google">Configurar o Google Agenda</button></div>
     <button class="secondary" id="install-help">Usar no computador e no celular</button>
-    <p class="hint">HOLY PLANNER · VERSÃO 5.0<br>Atalhos: Q captura rápida · N cria uma tarefa · / abre a busca · Alt + 1 abre Meu dia · Alt + 2 abre o foco.</p>
+    <p class="hint">HOLY PLANNER · VERSÃO 5.1<br>Atalhos: Q captura rápida · N cria uma tarefa · / abre a busca · M recolhe o menu · Alt + 1 abre Meu dia · Alt + 2 abre o foco.</p>
   </dialog>
   <dialog id="pair-dialog" aria-labelledby="pair-title">
     <form id="pair-form"><div class="pair-logo">h/</div><p class="eyebrow">SEU ESPAÇO, EM QUALQUER TELA</p><h2 id="pair-title">Conecte seu planner</h2><p>Digite o código exibido na janela do servidor Holy Planner no computador.</p><label>Código de conexão<input id="pair-code" required autocomplete="off" spellcheck="false" autocapitalize="none"></label><p id="pair-error" class="error" role="alert"></p><button class="primary" type="submit">Entrar no meu espaço →</button><p class="hint">O computador precisa estar ligado e na mesma rede. Nenhuma conta é necessária.</p></form>

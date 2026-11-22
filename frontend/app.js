@@ -137,13 +137,13 @@ function toolbar(extra = '') {
 
 function render() {
     $('#page-title').textContent = names[page];
-    $('#subtitle').textContent = subtitles[page];
+    $('#subtitle').textContent = '';
     $('#breadcrumb').textContent = names[page];
     $('#create').innerHTML = uiIcon('plus') + (page === 'finance' ? 'Novo lançamento' : page === 'projects' ? 'Novo projeto' : page === 'routines' ? 'Nova rotina' : 'Nova tarefa');
     document.body.dataset.page = page;
     const googlePanel = $('.google-panel');
     $('#google-default').append(googlePanel);
-    googlePanel.hidden = page !== 'today' && page !== 'calendar';
+    googlePanel.hidden = page !== 'calendar';
     $('#create').hidden = page === 'focus';
     if (page === 'workouts') $('#create').innerHTML = uiIcon('plus') + 'Registrar treino';
     if (page === 'planning') $('#create').innerHTML = uiIcon('plus') + 'Novo cenário';

@@ -91,7 +91,7 @@ def main():
         width=1440,
         height=900,
         min_size=(360, 480),
-        background_color="#f7f8fa",
+        background_color="#14161c",
     )
     window.events.closed += investment_viewer.close
     webview.start(debug=False)

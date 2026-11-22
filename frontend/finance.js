@@ -43,7 +43,6 @@ function renderFinance() {
         html += financeFilters()+`<div class="section-title"><h2>Lançamentos de ${esc(monthLabel(financeMonth))}</h2><span>${rows.length} REGISTRO(S) · FLUXO DA LISTA: ${money(net)}</span></div><p class="hint">O fluxo da lista inclui os previstos visíveis. Exportar CSV usa estes mesmos filtros.</p><div class="panel">${rows.map(financeRow).join('') || empty('Nenhum lançamento encontrado.', 'Adicione um lançamento ou ajuste o mês e os filtros.')}</div>`;
     } else if (financeView === 'investments') {
         const source = f.investment_source;
-        html += `<section class="finance-plan-link"><p><strong>Quer ver seus investimentos ao longo do tempo?</strong>Registre o valor da carteira e simule cenários com aportes, taxas e eventos fictícios.</p><button class="secondary" data-action="plan-goto">${uiIcon('trend')}Planejar investimentos ↗</button></section>`;
         html += renderInvestmentSource(source);
         if (source.enabled) html += '<details class="local-investment-details"><summary>Movimentos de investimentos no saldo local</summary><p class="hint">Registre aqui os aportes que saíram da sua conta, os resgates e os rendimentos recebidos. O saldo local só considera estes lançamentos. Os ativos e as cotações ficam no Investidor10.</p>';
         html += `<div class="stats finance-stats investment-stats">${[

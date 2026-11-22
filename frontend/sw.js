@@ -1,6 +1,6 @@
-const CACHE = 'holy-planner-shell-v5-0';
+const CACHE = 'holy-planner-shell-v5-1';
 const SHELL = ['/', '/index.html', '/style.css', '/responsive.css', '/finance.css', '/theme.css',
-    '/workspace.css', '/workouts.css', '/workouts.js', '/planning.css', '/planning.js', '/life.css', '/life.js', '/icons.js', '/finance.js', '/app.js', '/productivity.js', '/bridge.js',
+    '/workspace.css', '/workouts.css', '/workouts.js', '/planning.css', '/planning.js', '/life.css', '/minimal.css', '/theme-init.js', '/life.js', '/icons.js', '/finance.js', '/app.js', '/productivity.js', '/bridge.js',
     '/manifest.webmanifest', '/app-icon.svg', '/icon-192.png', '/icon-512.png'];
 self.addEventListener('install', event => event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL))));
 self.addEventListener('activate', event => event.waitUntil(
